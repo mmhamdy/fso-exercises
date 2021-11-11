@@ -1,0 +1,10 @@
+sequenceDiagram
+    note over Browser: Browser uses JavaScript from the server to create the new note
+
+    Browser ->> Server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+
+    note over Server: Content-Type header tells the server data is represented in JSON format
+
+    Server -->> Browser: 201 Status
+
+    note over Browser: Browser sends no further HTTP requests
