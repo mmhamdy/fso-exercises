@@ -6,6 +6,25 @@ const Button = ({text, onClick}) => {
   )
 }
 
+const Anecdote = ({title, anecdote, votes}) => {
+  return (
+    <div>
+      <h1>{title}</h1>
+      <p>{anecdote}</p>
+      <p>has {votes} votes</p>
+    </div>
+  )
+}
+
+const AnecdoteControls = ({voteControl, navControl}) => {
+  return (
+    <div>
+      <Button text='vote' onClick={voteControl} /> 
+      <Button text='next anecdote' onClick={navControl} />
+  </div>
+  )
+}
+
 const App = () => {
   const anecdotes = [
     'If it hurts, do it more often',
@@ -35,23 +54,9 @@ const App = () => {
 
   return (
     <div>
-      <div>
-        <h1>Anecdote of the Day</h1>
-        <p>{anecdotes[selected]}</p>
-        <p>has {votes[selected]} votes</p>
-        {console.log(votes)}
-        {console.log(selected)}
-        {console.log(maxVote)}
-        <div>
-          <Button text='vote' onClick={voteForAnecdote} /> 
-          <Button text='next anecdote' onClick={getNextAnecdote} />
-        </div>
-      </div>
-      <div>
-        <h1>Anecdote with most votes</h1>
-        <p>{anecdotes[maxVote]}</p>
-        <p>has {Math.max(...votes)} votes</p>
-      </div>
+      <Anecdote title='Anecdote of the day' anecdote={anecdotes[selected]} votes={votes[selected]}/>
+      <AnecdoteControls voteControl={voteForAnecdote} navControl={getNextAnecdote} />
+      <Anecdote title='Anecdote with most votes' anecdote={anecdotes[maxVote]} votes={Math.max(...votes)}/>
     </div>
   )
 }
