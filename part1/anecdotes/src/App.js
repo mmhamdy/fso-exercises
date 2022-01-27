@@ -52,6 +52,17 @@ const App = () => {
     setVotes(currentAnedote)
   }
 
+  if (maxVote === 0) {
+    return (
+      <div>
+        <Anecdote title='Anecdote of the day' anecdote={anecdotes[selected]} votes={votes[selected]}/>
+        <AnecdoteControls voteControl={voteForAnecdote} navControl={getNextAnecdote} />
+        <h1>Anecdote with most votes</h1>
+        <p>No votes yet</p>
+      </div>
+    )
+  }
+
   return (
     <div>
       <Anecdote title='Anecdote of the day' anecdote={anecdotes[selected]} votes={votes[selected]}/>
